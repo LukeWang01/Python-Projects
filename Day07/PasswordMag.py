@@ -2,10 +2,10 @@ import random
 import tkinter as tk
 import pyperclip
 
-# define funs
 from tkinter import messagebox
 
 
+# define funs
 def add_to_record():
     website = web_entry.get()
     email = email_entry.get()
@@ -15,7 +15,6 @@ def add_to_record():
         messagebox.showerror(title="Action Needed", message="Please entry the info required")
     else:
         is_ok = messagebox.askokcancel(title="Please confirm the info", message=f"Email:{email}\nPassword:{password}")
-
         if is_ok:
             with open("data.txt", "a") as date_file:
                 date_file.write(f"{website} | {email} | {password}\n")

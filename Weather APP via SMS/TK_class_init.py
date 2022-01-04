@@ -17,3 +17,5 @@ class QuizInterface:
 
         self.window.mainloop()
 
+
+pass

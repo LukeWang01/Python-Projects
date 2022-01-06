@@ -1,5 +1,4 @@
 import os
-from keys import *
 import requests
 from twilio.rest import Client
 from dotenv import load_dotenv

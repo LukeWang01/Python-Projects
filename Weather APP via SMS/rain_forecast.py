@@ -1,10 +1,20 @@
+import os
+from keys import *
 import requests
+from twilio.rest import Client
+from dotenv import load_dotenv
 import datetime as dt
 import time
 
+# load keys from .env file
+load_dotenv(".env")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
 LON = -74.0553
 LAT = 40.7967
-API_KEY = "81139b246e19d2aaa6599a775b8047e3"
+API_KEY = OPENWEATHER_API_KEY
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/onecall"
 LOC_PARAMS = {
     "lat": LAT,
@@ -36,11 +46,25 @@ for i_data in hourly_data_list:
     if hourly_weather_id < 700:
         umbrella_needed = True
 
+# Find your Account SID and Auth Token at twilio.com/console
+# and set the environment variables. See http://twil.io/secure
+# My phone from twilio: +15735744021   signup number: +12016801401
+account_sid = TWILIO_ACCOUNT_SID
+print(account_sid)
+auth_token = TWILIO_AUTH_TOKEN
+client = Client(account_sid, auth_token)
 if umbrella_needed:
-    print("Bring an umbrella")
+    message_body = "It will be raining today, don't forget to bring 🌂 ️"
 else:
-    print("Just go out and have fun")
+    message_body = "Nice Day, go out and have fun 🌄 "
 
+message = client.messages \
+    .create(
+    body=message_body,
+    from_='+15735744021',
+    to='+12016801401'
+    )
 
-
-
+# print(message.status)
+# print(message.body)
+# print("Bring an umbrella")

@@ -71,7 +71,6 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-
     mins = count // 60
     second = count % 60
 
@@ -95,16 +94,22 @@ def count_down(count):
 # ---------------------------- UI SETUP ------------------------------- #
 window = tk.Tk()
 window.title("Pomodoro")
-window.config(padx=100, pady=50, bg=YELLOW)
+window.config(padx=100, pady=50, bg=YELLOW, width=350, height=224)
 
 title_label = tk.Label(text="Timer", fg=GREEN, font=(FONT_NAME, 50), bg=YELLOW)
 title_label.grid(column=1, row=0)
 
-canvas = tk.Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
+canvas = tk.Canvas(width=350, height=224, bg=YELLOW, highlightthickness=0)
 img = tk.PhotoImage(file="tomato.png")
-canvas.create_image(100, 112, image=img)
-time_text = canvas.create_text(100, 112, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
+canvas.create_image(175, 112, image=img)
+time_text = canvas.create_text(175, 112, text="00:00", fill="white", font=(FONT_NAME, 35, "bold"))
 canvas.grid(column=1, row=1)
+
+empty_label1 = tk.Label(text="", bg=YELLOW)
+empty_label1.grid(column=1, row=2)
+
+empty_label2 = tk.Label(text="", bg=YELLOW)
+empty_label2.grid(column=1, row=4)
 
 start_button = tk.Button(text="Start", highlightthickness=0, bg=YELLOW, command=start_timer)
 start_button.grid(column=0, row=3)
@@ -116,7 +121,6 @@ next_round_button = tk.Button(text="Next Round", highlightthickness=0, bg=YELLOW
 next_round_button.grid(column=1, row=3)
 
 checkmark = tk.Label(fg=GREEN, bg=YELLOW)
-checkmark.grid(column=1, row=4)
-
+checkmark.grid(column=1, row=5)
 
 window.mainloop()

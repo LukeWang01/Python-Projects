@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import beepy
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -61,12 +62,18 @@ def start_timer():
     if reps % 8 == 0:
         count_down(long_break_sec)
         title_label.config(text="Long Break", fg=RED)
+        beepy.beep(sound="success")
+
     elif reps % 2 == 0:
         count_down(short_break_sec)
         title_label.config(text="Short Break", fg=PINK)
+        beepy.beep(sound="ping")
+
     else:
         count_down(work_sec)
         title_label.config(text="Work", fg=GREEN)
+        if  reps != 1:
+            beepy.beep(sound="ping")
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #

@@ -72,7 +72,7 @@ def start_timer():
     else:
         count_down(work_sec)
         title_label.config(text="Work", fg=GREEN)
-        if  reps != 1:
+        if reps != 1:
             beepy.beep(sound="ping")
 
 
@@ -91,6 +91,8 @@ def count_down(count):
         timer = window.after(1000, count_down, count - 1)
         # print("run")
     else:
+        global not_next_round
+        not_next_round = False
         start_timer()
         check_mark_list = ""
         for i in range(reps // 2):
